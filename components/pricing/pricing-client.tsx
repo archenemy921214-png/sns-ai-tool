@@ -43,33 +43,7 @@ export function PricingClient() {
       router.push('/signup')
       return
     }
-
-    setLoading(planName)
-
-    try {
-      const res = await fetch('/api/stripe/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ priceId }),
-      })
-
-      const data = await res.json()
-
-      if (!res.ok) {
-        if (res.status === 401) {
-          router.push('/login')
-          return
-        }
-        toast.error(data.error ?? 'エラーが発生しました')
-        return
-      }
-
-      window.location.href = data.url
-    } catch {
-      toast.error('ネットワークエラーが発生しました')
-    } finally {
-      setLoading(null)
-    }
+    toast.info('有料プランは近日公開予定です')
   }
 
   return (

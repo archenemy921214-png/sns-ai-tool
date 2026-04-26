@@ -57,7 +57,6 @@ export function SettingsClient({
   const [selectedSns, setSelectedSns] = useState<SnsType[]>((profile?.sns_type as SnsType[]) ?? [])
   const [tone, setTone] = useState<Tone>((profile?.tone as Tone) ?? 'casual')
   const [saving, setSaving] = useState(false)
-  const [portalLoading, setPortalLoading] = useState(false)
 
   useEffect(() => {
     if (checkoutSuccess) {
@@ -89,20 +88,7 @@ export function SettingsClient({
   }
 
   async function handlePortal() {
-    setPortalLoading(true)
-    try {
-      const res = await fetch('/api/stripe/portal', { method: 'POST' })
-      const data = await res.json()
-      if (data.url) {
-        window.location.href = data.url
-      } else {
-        toast.error('ポータルへのアクセスに失敗しました')
-      }
-    } catch {
-      toast.error('エラーが発生しました')
-    } finally {
-      setPortalLoading(false)
-    }
+    toast.info('サブスクリプション管理は近日公開予定です')
   }
 
   return (
@@ -209,9 +195,8 @@ export function SettingsClient({
             <Button
               variant="outline"
               onClick={handlePortal}
-              disabled={portalLoading}
-            >
-              {portalLoading ? '処理中...' : 'サブスクリプションを管理'}
+              >
+              サブスクリプションを管理
             </Button>
           )}
         </CardContent>
