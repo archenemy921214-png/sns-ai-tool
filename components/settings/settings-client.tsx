@@ -92,9 +92,13 @@ export function SettingsClient({
     try {
       const res = await fetch('/api/stripe/portal', { method: 'POST' })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error)
-      router.push(data.url)
-    } catch {
+      if (!res.ok) {
+        console.error('[portal] API error:', data)
+        throw new Error(data.error ?? 'Portal failed')
+      }
+      window.location.href = data.url
+    } catch (err) {
+      console.error('[portal] error:', err)
       toast.error('ポータルへのアクセスに失敗しました')
     }
   }

@@ -55,9 +55,14 @@ export function PricingClient() {
         return
       }
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error)
-      router.push(data.url)
+      if (!res.ok) {
+        console.error('[checkout] API error:', data)
+        throw new Error(data.error ?? 'Checkout failed')
+      }
+      console.log('[checkout] redirecting to:', data.url)
+      window.location.href = data.url
     } catch (err) {
+      console.error('[checkout] error:', err)
       toast.error('チェックアウトの開始に失敗しました')
     } finally {
       setLoading(null)
