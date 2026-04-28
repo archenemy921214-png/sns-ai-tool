@@ -1,6 +1,6 @@
 export type Plan = 'free' | 'pro' | 'business'
 export type PostStatus = 'draft' | 'scheduled' | 'published'
-export type SnsType = 'twitter' | 'instagram' | 'linkedin' | 'facebook' | 'other'
+export type SnsType = 'twitter' | 'instagram' | 'threads' | 'linkedin' | 'facebook' | 'other'
 export type Tone = 'formal' | 'casual' | 'friendly' | 'professional' | 'humorous'
 
 export interface Profile {

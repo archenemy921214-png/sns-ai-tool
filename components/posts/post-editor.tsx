@@ -18,6 +18,7 @@ import { Copy, Check, ExternalLink } from 'lucide-react'
 const SNS_OPTIONS: { value: SnsType; label: string; limit: number }[] = [
   { value: 'twitter', label: 'X (Twitter)', limit: 140 },
   { value: 'instagram', label: 'Instagram', limit: 2200 },
+  { value: 'threads', label: 'Threads', limit: 500 },
   { value: 'linkedin', label: 'LinkedIn', limit: 3000 },
   { value: 'facebook', label: 'Facebook', limit: 63206 },
   { value: 'other', label: 'その他', limit: 99999 },

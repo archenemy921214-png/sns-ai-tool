@@ -17,6 +17,7 @@ const SNS_OPTIONS: { value: SnsType | 'all'; label: string }[] = [
   { value: 'all', label: '汎用' },
   { value: 'twitter', label: 'X (Twitter)' },
   { value: 'instagram', label: 'Instagram' },
+  { value: 'threads', label: 'Threads' },
   { value: 'linkedin', label: 'LinkedIn' },
   { value: 'facebook', label: 'Facebook' },
 ]

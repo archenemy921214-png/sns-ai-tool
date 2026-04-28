@@ -19,6 +19,7 @@ import { toast } from 'sonner'
 const SNS_OPTIONS: { value: SnsType; label: string }[] = [
   { value: 'twitter', label: 'X (Twitter)' },
   { value: 'instagram', label: 'Instagram' },
+  { value: 'threads', label: 'Threads' },
   { value: 'linkedin', label: 'LinkedIn' },
   { value: 'facebook', label: 'Facebook' },
   { value: 'other', label: 'その他' },
@@ -88,7 +89,14 @@ export function SettingsClient({
   }
 
   async function handlePortal() {
-    toast.info('サブスクリプション管理は近日公開予定です')
+    try {
+      const res = await fetch('/api/stripe/portal', { method: 'POST' })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      router.push(data.url)
+    } catch {
+      toast.error('ポータルへのアクセスに失敗しました')
+    }
   }
 
   return (

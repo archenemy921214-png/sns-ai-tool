@@ -31,7 +31,12 @@ export async function proxy(request: NextRequest) {
 
   const {
     data: { user },
+    error: authError,
   } = await supabase.auth.getUser()
+
+  if (authError) {
+    console.error('[proxy] supabase.auth.getUser error:', authError.message, authError.status)
+  }
 
   const isPublic = PUBLIC_PATHS.some((p) => pathname.startsWith(p)) || pathname === '/'
 

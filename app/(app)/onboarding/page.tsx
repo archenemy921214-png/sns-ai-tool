@@ -15,6 +15,7 @@ import { type SnsType, type Tone } from '@/types'
 const SNS_OPTIONS: { value: SnsType; label: string }[] = [
   { value: 'twitter', label: 'X (Twitter)' },
   { value: 'instagram', label: 'Instagram' },
+  { value: 'threads', label: 'Threads' },
   { value: 'linkedin', label: 'LinkedIn' },
   { value: 'facebook', label: 'Facebook' },
   { value: 'other', label: 'その他' },

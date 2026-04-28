@@ -43,7 +43,25 @@ export function PricingClient() {
       router.push('/signup')
       return
     }
-    toast.info('有料プランは近日公開予定です')
+    setLoading(planName)
+    try {
+      const res = await fetch('/api/stripe/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ priceId }),
+      })
+      if (res.status === 401) {
+        router.push('/signup')
+        return
+      }
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      router.push(data.url)
+    } catch (err) {
+      toast.error('チェックアウトの開始に失敗しました')
+    } finally {
+      setLoading(null)
+    }
   }
 
   return (
