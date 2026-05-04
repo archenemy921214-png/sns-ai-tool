@@ -63,30 +63,41 @@ export default async function DashboardPage() {
             </Badge>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-2">
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-600">今月の使用回数</span>
-            <span className="font-medium">
-              {aiUsage} / {limit === Infinity ? '無制限' : limit} 回
-            </span>
-          </div>
-          {limit !== Infinity && (
-            <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-              <div
-                className={`h-full rounded-full transition-all ${
-                  usagePercent >= 90 ? 'bg-red-500' : usagePercent >= 70 ? 'bg-yellow-500' : 'bg-violet-500'
-                }`}
-                style={{ width: `${Math.min(usagePercent, 100)}%` }}
-              />
-            </div>
-          )}
-          {plan === 'free' && (
-            <Link
-              href="/pricing"
-              className={cn(buttonVariants({ size: 'sm', variant: 'outline' }), 'mt-2')}
-            >
-              プランをアップグレード
-            </Link>
+        <CardContent className="space-y-3">
+          {limit === Infinity ? (
+            <p className="text-sm font-medium text-violet-600">無制限</p>
+          ) : (
+            <>
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-600">今月の残り回数</span>
+                <span className={`font-semibold ${limit - aiUsage <= 0 ? 'text-red-500' : 'text-gray-900'}`}>
+                  残り {Math.max(limit - aiUsage, 0)} 回 / {limit} 回
+                </span>
+              </div>
+              <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                <div
+                  className={`h-full rounded-full transition-all ${
+                    usagePercent >= 100 ? 'bg-red-500' : usagePercent >= 66 ? 'bg-yellow-500' : 'bg-violet-500'
+                  }`}
+                  style={{ width: `${Math.min(usagePercent, 100)}%` }}
+                />
+              </div>
+              {limit - aiUsage <= 0 ? (
+                <Link
+                  href="/pricing"
+                  className={cn(buttonVariants({ size: 'sm' }), 'bg-violet-600 hover:bg-violet-700 mt-1')}
+                >
+                  Proにアップグレード
+                </Link>
+              ) : (
+                <Link
+                  href="/pricing"
+                  className={cn(buttonVariants({ size: 'sm', variant: 'outline' }), 'mt-1')}
+                >
+                  プランを見る
+                </Link>
+              )}
+            </>
           )}
         </CardContent>
       </Card>

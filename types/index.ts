@@ -1,4 +1,4 @@
-export type Plan = 'free' | 'pro' | 'business'
+export type Plan = 'free' | 'pro'
 export type PostStatus = 'draft' | 'scheduled' | 'published'
 export type SnsType = 'twitter' | 'instagram' | 'threads' | 'linkedin' | 'facebook' | 'other'
 export type Tone = 'formal' | 'casual' | 'friendly' | 'professional' | 'humorous'
@@ -65,12 +65,10 @@ export interface AiUsage {
 }
 
 export const PLAN_LIMITS: Record<Plan, number> = {
-  free: 10,
-  pro: 100,
-  business: Infinity,
+  free: 3,
+  pro: Infinity,
 }
 
 export const PLAN_PRICES = {
-  pro: { label: 'Pro', price: 980, description: 'AI生成100回/月' },
-  business: { label: 'Business', price: 2980, description: 'AI生成無制限/月' },
+  pro: { label: 'Pro', price: 980, description: 'AI生成無制限/月' },
 }

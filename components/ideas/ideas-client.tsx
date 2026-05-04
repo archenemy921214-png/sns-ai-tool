@@ -14,6 +14,7 @@ import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
 import { toast } from 'sonner'
+import { UpgradeModal } from '@/components/shared/upgrade-modal'
 
 const SNS_OPTIONS: { value: SnsType; label: string }[] = [
   { value: 'twitter', label: 'X (Twitter)' },
@@ -39,6 +40,7 @@ export function IdeasClient({
   const [snsType, setSnsType] = useState<SnsType>(defaultSnsType)
   const [count, setCount] = useState(5)
   const [generating, setGenerating] = useState(false)
+  const [showUpgrade, setShowUpgrade] = useState(false)
 
   async function handleGenerate() {
     if (!theme.trim()) {
@@ -55,6 +57,11 @@ export function IdeasClient({
       })
 
       const data = await res.json()
+
+      if (res.status === 429) {
+        setShowUpgrade(true)
+        return
+      }
 
       if (!res.ok) {
         toast.error(data.error ?? 'ネタ生成に失敗しました')
@@ -85,6 +92,8 @@ export function IdeasClient({
   }
 
   return (
+    <>
+    <UpgradeModal open={showUpgrade} onClose={() => setShowUpgrade(false)} />
     <div className="space-y-6">
       <Card>
         <CardContent className="p-5 space-y-4">
@@ -187,5 +196,6 @@ export function IdeasClient({
         </div>
       )}
     </div>
+    </>
   )
 }

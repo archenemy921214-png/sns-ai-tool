@@ -11,8 +11,8 @@ const PLANS = [
   {
     name: 'Free',
     price: 0,
-    description: '個人利用・お試しに',
-    features: ['AI生成 10回/月', '投稿管理（無制限）', 'ネタ帳', 'カレンダー', 'テンプレート'],
+    description: 'まずはお試しに',
+    features: ['AI生成 3回/月', '投稿管理（無制限）', 'ネタ帳', 'カレンダー', 'テンプレート'],
     priceId: null,
     badge: null,
   },
@@ -20,17 +20,9 @@ const PLANS = [
     name: 'Pro',
     price: 980,
     description: 'SNS運用を本格化したい方に',
-    features: ['AI生成 100回/月', '投稿管理（無制限）', 'ネタ帳', 'カレンダー', 'テンプレート', '優先サポート'],
+    features: ['AI生成 無制限', '投稿管理（無制限）', 'ネタ帳', 'カレンダー', 'テンプレート', '優先サポート'],
     priceId: process.env.NEXT_PUBLIC_STRIPE_PRO_PRICE_ID,
     badge: 'おすすめ',
-  },
-  {
-    name: 'Business',
-    price: 2980,
-    description: 'チーム・ヘビーユーザーに',
-    features: ['AI生成 無制限', '投稿管理（無制限）', 'ネタ帳', 'カレンダー', 'テンプレート', '優先サポート', 'チーム機能（近日公開）'],
-    priceId: process.env.NEXT_PUBLIC_STRIPE_BUSINESS_PRICE_ID,
-    badge: null,
   },
 ]
 
@@ -56,10 +48,8 @@ export function PricingClient() {
       }
       const data = await res.json()
       if (!res.ok) {
-        console.error('[checkout] API error:', data)
         throw new Error(data.error ?? 'Checkout failed')
       }
-      console.log('[checkout] redirecting to:', data.url)
       window.location.href = data.url
     } catch (err) {
       console.error('[checkout] error:', err)
@@ -70,7 +60,7 @@ export function PricingClient() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
       {PLANS.map((plan) => (
         <Card
           key={plan.name}
@@ -102,9 +92,7 @@ export function PricingClient() {
             </ul>
             <Button
               className={`w-full mt-4 ${
-                plan.badge
-                  ? 'bg-violet-600 hover:bg-violet-700'
-                  : ''
+                plan.badge ? 'bg-violet-600 hover:bg-violet-700' : ''
               }`}
               variant={plan.badge ? 'default' : 'outline'}
               onClick={() => handleCheckout(plan.priceId, plan.name)}

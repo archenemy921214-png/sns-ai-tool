@@ -14,6 +14,7 @@ import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { toast } from 'sonner'
 import { Copy, Check, ExternalLink } from 'lucide-react'
+import { UpgradeModal } from '@/components/shared/upgrade-modal'
 
 const SNS_OPTIONS: { value: SnsType; label: string; limit: number }[] = [
   { value: 'twitter', label: 'X (Twitter)', limit: 140 },
@@ -56,6 +57,7 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
   const [aiKeywords, setAiKeywords] = useState('')
   const [aiGenerating, setAiGenerating] = useState(false)
   const [saving, setSaving] = useState(false)
+  const [showUpgrade, setShowUpgrade] = useState(false)
 
   const selectedSns = SNS_OPTIONS.find((s) => s.value === snsType)
   const charCount = content.length
@@ -81,6 +83,11 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
       })
 
       const data = await res.json()
+
+      if (res.status === 429) {
+        setShowUpgrade(true)
+        return
+      }
 
       if (!res.ok) {
         toast.error(data.error ?? 'AI生成に失敗しました')
@@ -140,6 +147,8 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
   }
 
   return (
+    <>
+    <UpgradeModal open={showUpgrade} onClose={() => setShowUpgrade(false)} />
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="space-y-6">
         <Card>
@@ -318,5 +327,6 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
         </Card>
       </div>
     </div>
+    </>
   )
 }

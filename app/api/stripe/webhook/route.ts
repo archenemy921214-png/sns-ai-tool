@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
 
       const item = sub.items.data[0]
       const priceId = item.price.id
-      const plan = getPlanFromPriceId(priceId) ?? 'pro'
+      const plan: 'pro' = getPlanFromPriceId(priceId) ?? 'pro'
       const currentPeriodEnd = new Date(item.current_period_end * 1000).toISOString()
       const customerId = typeof sub.customer === 'string' ? sub.customer : sub.customer.id
 
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
       const sub = event.data.object as Stripe.Subscription
       const item = sub.items.data[0]
       const priceId = item.price.id
-      const plan = getPlanFromPriceId(priceId) ?? 'pro'
+      const plan: 'pro' = getPlanFromPriceId(priceId) ?? 'pro'
       const currentPeriodEnd = new Date(item.current_period_end * 1000).toISOString()
       const customerId = typeof sub.customer === 'string' ? sub.customer : sub.customer.id
 

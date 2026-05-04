@@ -42,6 +42,22 @@ export async function checkAndIncrementUsage(userId: string): Promise<{
   limit: number
   plan: Plan
 }> {
-  // TODO: テスト用に制限を無効化中
-  return { allowed: true, current: 0, limit: Infinity, plan: 'free' }
+  const plan = await getUserPlan(userId)
+  const limit = PLAN_LIMITS[plan]
+
+  if (limit === Infinity) {
+    const supabase = await createClient()
+    await supabase.rpc('increment_ai_usage', { p_user_id: userId, p_period: getCurrentPeriod() })
+    const current = await getAiUsage(userId)
+    return { allowed: true, current, limit, plan }
+  }
+
+  const current = await getAiUsage(userId)
+  if (current >= limit) {
+    return { allowed: false, current, limit, plan }
+  }
+
+  const supabase = await createClient()
+  await supabase.rpc('increment_ai_usage', { p_user_id: userId, p_period: getCurrentPeriod() })
+  return { allowed: true, current: current + 1, limit, plan }
 }
