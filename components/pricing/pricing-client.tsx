@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { toast } from 'sonner'
@@ -64,45 +64,37 @@ export function PricingClient() {
       {PLANS.map((plan) => (
         <Card
           key={plan.name}
-          className={`relative flex flex-col ${
-            plan.badge ? 'border-2 border-emerald-500 shadow-lg' : ''
-          }`}
+          className={plan.badge ? 'ring-2 ring-emerald-500 shadow-lg' : ''}
         >
-          {plan.badge && (
-            <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-600">
-              {plan.badge}
-            </Badge>
-          )}
-          <CardHeader className="pb-4">
-            <CardTitle className="text-lg">{plan.name}</CardTitle>
-            <CardDescription>{plan.description}</CardDescription>
-            <div className="mt-2">
-              <span className="text-3xl font-bold">¥{plan.price.toLocaleString()}</span>
-              {plan.price > 0 && <span className="text-gray-500 text-sm">/月</span>}
+          <CardContent className="p-5 flex flex-col gap-4">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="font-bold text-base">{plan.name}</span>
+                {plan.badge && (
+                  <Badge className="bg-emerald-600 text-white text-xs">{plan.badge}</Badge>
+                )}
+              </div>
+              <p className="text-xs text-gray-500">{plan.description}</p>
+              <div className="pt-1">
+                <span className="text-3xl font-extrabold">¥{plan.price.toLocaleString()}</span>
+                {plan.price > 0 && <span className="text-gray-400 text-sm ml-1">/月</span>}
+              </div>
             </div>
-          </CardHeader>
-          <CardContent className="flex flex-col flex-1 gap-4">
-            <ul className="space-y-2 flex-1">
+            <ul className="space-y-2">
               {plan.features.map((feature) => (
-                <li key={feature} className="flex items-center gap-2 text-sm">
-                  <span className="text-green-500">✓</span>
+                <li key={feature} className="flex items-center gap-2 text-sm text-gray-700">
+                  <span className="text-emerald-500 font-bold">✓</span>
                   {feature}
                 </li>
               ))}
             </ul>
             <Button
-              className={`w-full mt-4 ${
-                plan.badge ? 'bg-emerald-600 hover:bg-emerald-700' : ''
-              }`}
+              className={`w-full ${plan.badge ? 'bg-emerald-600 hover:bg-emerald-700' : ''}`}
               variant={plan.badge ? 'default' : 'outline'}
               onClick={() => handleCheckout(plan.priceId, plan.name)}
               disabled={loading === plan.name}
             >
-              {loading === plan.name
-                ? '処理中...'
-                : plan.price === 0
-                ? '無料で始める'
-                : 'このプランを選ぶ'}
+              {loading === plan.name ? '処理中...' : plan.price === 0 ? '無料で始める' : 'このプランを選ぶ'}
             </Button>
           </CardContent>
         </Card>
