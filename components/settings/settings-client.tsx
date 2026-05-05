@@ -86,6 +86,12 @@ export function SettingsClient({
     setSaving(false)
   }
 
+  async function handleLogout() {
+    const supabase = createClient()
+    await supabase.auth.signOut()
+    window.location.href = '/login'
+  }
+
   async function handlePortal() {
     try {
       const res = await fetch('/api/stripe/portal', { method: 'POST' })
@@ -214,6 +220,15 @@ export function SettingsClient({
           </div>
         )
       })()}
+
+      <div className="pt-2">
+        <button
+          onClick={handleLogout}
+          className="text-sm text-red-500 hover:text-red-700 transition-colors"
+        >
+          🚪 ログアウト
+        </button>
+      </div>
     </div>
   )
 }
