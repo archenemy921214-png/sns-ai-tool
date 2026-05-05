@@ -17,16 +17,12 @@ export function DashboardCTA() {
       <button
         onClick={handleRandom}
         disabled={loading}
-        className="w-full flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 active:scale-95 disabled:scale-100 transition-all text-white font-bold text-base py-4 shadow-md shadow-emerald-100 relative overflow-hidden"
+        className="w-full rounded-2xl bg-emerald-500 hover:bg-emerald-600 active:scale-95 disabled:scale-100 transition-all text-white font-bold text-base py-4 shadow-md shadow-emerald-100"
       >
         {loading ? (
-          <span className="flex items-center gap-2 animate-pulse">
-            <span className="text-lg">✨</span> ネタを考えています…
-          </span>
+          <span className="animate-pulse">✨ ネタを考えています…</span>
         ) : (
-          <span className="flex items-center gap-2">
-            <span className="text-lg">✨</span> ランダムで投稿を作る
-          </span>
+          '✨ ランダムで投稿を作る'
         )}
       </button>
       <a
