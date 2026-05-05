@@ -84,7 +84,7 @@ export function Sidebar() {
       {/* ===== スマホ: FAB ===== */}
       <Link
         href="/posts/new"
-        className="md:hidden fixed bottom-20 right-4 z-50 size-14 rounded-full bg-emerald-600 text-white shadow-lg flex items-center justify-center text-2xl active:scale-95 transition-transform"
+        className="md:hidden fixed bottom-20 right-4 z-50 size-11 rounded-full bg-gray-700/70 text-white shadow flex items-center justify-center text-xl active:scale-95 transition-transform"
         aria-label="新規投稿"
       >
         ＋
