@@ -248,6 +248,7 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
                     onClick={() => {
                       const urls: Record<string, string> = {
                         twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(content)}`,
+                        threads: `https://www.threads.net/intent/post?text=${encodeURIComponent(content)}`,
                         linkedin: 'https://www.linkedin.com/feed/?shareActive=true',
                         instagram: 'https://www.instagram.com/',
                         facebook: 'https://www.facebook.com/',
