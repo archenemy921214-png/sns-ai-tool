@@ -10,7 +10,6 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
 import { toast } from 'sonner'
@@ -164,54 +163,57 @@ export function SettingsClient({
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base flex items-center gap-2">
-            サブスクリプション
-            <Badge variant={plan === 'free' ? 'secondary' : 'default'} className="capitalize">
-              {plan}
-            </Badge>
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-1.5">
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-600">今月のAI生成使用回数</span>
-              <span className="font-medium">
-                {aiUsage} / {limit === Infinity ? '無制限' : limit} 回
-              </span>
-            </div>
-            {limit !== Infinity && (
-              <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-emerald-500 rounded-full"
-                  style={{ width: `${Math.min((aiUsage / limit) * 100, 100)}%` }}
-                />
+      {(() => {
+        const usagePercent = limit === Infinity ? 0 : Math.round((aiUsage / limit) * 100)
+        const overLimit = limit !== Infinity && aiUsage >= limit
+        return plan === 'free' ? (
+          <div className={cn(
+            'rounded-2xl p-4 space-y-3',
+            overLimit ? 'bg-red-50 border border-red-200' : 'bg-emerald-50 border border-emerald-200'
+          )}>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className={`font-bold text-sm ${overLimit ? 'text-red-700' : 'text-emerald-800'}`}>
+                  {overLimit ? '⚠️ AI生成の上限に達しました' : '✨ AI生成'}
+                </p>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  今月 {aiUsage} / {limit} 回使用
+                </p>
               </div>
-            )}
-          </div>
-          {plan !== 'free' && subscription?.current_period_end && (
-            <div className="space-y-1.5">
-              <Label>次回更新日</Label>
-              <p className="text-sm text-gray-600">
-                {new Date(subscription.current_period_end).toLocaleDateString('ja-JP')}
-              </p>
+              <span className="text-2xl">{overLimit ? '🔒' : '🤖'}</span>
             </div>
-          )}
-          {plan === 'free' ? (
+            <div className="h-2 bg-white/60 rounded-full overflow-hidden">
+              <div
+                className={`h-full rounded-full transition-all ${overLimit ? 'bg-red-400' : usagePercent >= 66 ? 'bg-yellow-400' : 'bg-emerald-400'}`}
+                style={{ width: `${Math.min(usagePercent, 100)}%` }}
+              />
+            </div>
             <a
               href="/pricing"
-              className={cn(buttonVariants(), 'bg-emerald-600 hover:bg-emerald-700')}
+              className={cn(buttonVariants(), 'w-full', overLimit ? 'bg-red-500 hover:bg-red-600' : 'bg-emerald-600 hover:bg-emerald-700')}
             >
-              プランをアップグレード
+              {overLimit ? '🚀 Proにアップグレードして続ける' : 'Proプランを見る — 制限なし'}
             </a>
-          ) : (
-            <Button variant="outline" onClick={handlePortal}>
+          </div>
+        ) : (
+          <div className="rounded-2xl p-4 space-y-3 bg-emerald-50 border border-emerald-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-bold text-sm text-emerald-800">✨ AI生成: 無制限</p>
+                {subscription?.current_period_end && (
+                  <p className="text-xs text-gray-500 mt-0.5">
+                    次回更新日: {new Date(subscription.current_period_end).toLocaleDateString('ja-JP')}
+                  </p>
+                )}
+              </div>
+              <span className="text-2xl">🤖</span>
+            </div>
+            <Button variant="outline" className="w-full" onClick={handlePortal}>
               サブスクリプションを管理
             </Button>
-          )}
-        </CardContent>
-      </Card>
+          </div>
+        )
+      })()}
     </div>
   )
 }
