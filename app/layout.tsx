@@ -10,8 +10,8 @@ const nunito = Nunito({
 })
 
 export const metadata: Metadata = {
-  title: 'Postly - AI SNS投稿管理',
-  description: 'AIでSNS投稿を効率化する投稿管理ツール',
+  title: 'SNS AI Tool - AI SNS投稿作成ツール',
+  description: 'SNS AI Toolは、Instagram・Threads・XなどのSNS投稿文をAIで作成できるWebサービスです。',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

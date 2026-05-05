@@ -63,7 +63,7 @@ export default function PrivacyPage() {
         <section className="space-y-3">
           <h2 className="text-lg font-bold">7. お問い合わせ</h2>
           <p className="text-sm text-gray-700 leading-relaxed">
-            個人情報の取り扱いに関するお問い合わせは、<a href="/contact" className="text-blue-600 underline">お問い合わせページ</a>よりご連絡ください。
+            個人情報の取り扱いに関するお問い合わせは、<a href="mailto:archenemy921214@gmail.com" className="text-blue-600 underline">archenemy921214@gmail.com</a> またはお問い合わせページよりご連絡ください。
           </p>
         </section>
       </main>

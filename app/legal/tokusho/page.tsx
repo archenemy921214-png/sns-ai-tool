@@ -4,7 +4,7 @@ import { PublicFooter } from '@/components/shared/public-footer'
 const ROWS = [
   { label: '販売事業者', value: '野呂剛士' },
   { label: '所在地', value: '大阪府大東市三箇1-22-14' },
-  { label: 'お問い合わせ', value: 'メールにて受付（contact@sns-ai-tool.com）' },
+  { label: 'お問い合わせ', value: 'メールにて受付（archenemy921214@gmail.com）' },
   { label: '販売価格', value: '各プランページに記載（無料プラン：¥0 / 有料プラン：¥980/月）' },
   { label: '商品代金以外の必要料金', value: 'インターネット接続料金・通信料金等はお客様のご負担となります' },
   { label: '支払い方法', value: 'クレジットカード決済（Stripe）' },
