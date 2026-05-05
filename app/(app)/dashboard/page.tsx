@@ -8,6 +8,19 @@ import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
 import { PLAN_LIMITS } from '@/types'
 
+const DASHBOARD_SUBTITLES = [
+  'まずはネタ帳からアイデアを探してみましょう',
+  '下書きが溜まっていたら、今日こそ公開してみましょう',
+  '一言でも投稿するだけで、存在感は変わります',
+  '今日の出来事をそのまま投稿のネタにしてみましょう',
+  '短い投稿でも、続けることが一番の戦略です',
+  'テンプレートを使えば、投稿作成が一気に楽になります',
+  'AIに任せて、あとは投稿ボタンを押すだけです',
+  '予約投稿を使えば、忙しい日も発信が止まりません',
+  'フォロワーが増えるのは、投稿した日の積み重ねです',
+  '今日のひとつの投稿が、明日のつながりを生みます',
+]
+
 export default async function DashboardPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -33,13 +46,15 @@ export default async function DashboardPage() {
     { label: 'ネタ数', value: ideas.length, icon: '💡', color: 'text-purple-600' },
   ]
 
+  const subtitle = DASHBOARD_SUBTITLES[Math.floor(Math.random() * DASHBOARD_SUBTITLES.length)]
+
   return (
     <div className="p-8 space-y-8 max-w-5xl">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">
-          おかえりなさい、{profile.data?.display_name ?? 'ユーザー'} さん
+          {profile.data?.display_name ?? 'ユーザー'} さん、今日はどんなネタを投稿しますか？
         </h1>
-        <p className="text-gray-500 mt-1">今日も投稿を管理しましょう</p>
+        <p className="text-gray-500 mt-1">{subtitle}</p>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
