@@ -221,7 +221,11 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
               disabled={aiGenerating || !aiTopic.trim()}
               className="w-full bg-emerald-600 hover:bg-emerald-700"
             >
-              {aiGenerating ? '生成中...' : '✨ AI生成'}
+              {aiGenerating ? (
+                <span className="animate-pulse">✨ ネタを考えています…</span>
+              ) : (
+                '✨ AI生成'
+              )}
             </Button>
           </CardContent>
         </Card>
