@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useInputHistory } from '@/hooks/use-input-history'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
@@ -41,6 +42,7 @@ export function IdeasClient({
   const [count, setCount] = useState(5)
   const [generating, setGenerating] = useState(false)
   const [showUpgrade, setShowUpgrade] = useState(false)
+  const { history: themeHistory, addToHistory: addTheme } = useInputHistory('ideas-theme')
 
   async function handleGenerate() {
     if (!theme.trim()) {
@@ -68,6 +70,7 @@ export function IdeasClient({
         return
       }
 
+      addTheme(theme)
       toast.success(`${data.ideas.length}件のネタを生成しました`)
       router.refresh()
       setIdeas((prev) => [...data.ideas.map((idea: Idea) => ({ ...idea, user_id: userId })), ...prev])
@@ -105,7 +108,11 @@ export function IdeasClient({
                 placeholder="例：ITエンジニアの日常"
                 value={theme}
                 onChange={(e) => setTheme(e.target.value)}
+                list="ideas-theme-history"
               />
+              <datalist id="ideas-theme-history">
+                {themeHistory.map((v) => <option key={v} value={v} />)}
+              </datalist>
             </div>
             <div className="space-y-1.5">
               <Label>SNS</Label>

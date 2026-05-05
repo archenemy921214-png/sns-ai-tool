@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useInputHistory } from '@/hooks/use-input-history'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { type Post, type PostStatus, type SnsType, type Tone } from '@/types'
@@ -59,6 +60,8 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
   const [aiGenerating, setAiGenerating] = useState(false)
   const [saving, setSaving] = useState(false)
   const [showUpgrade, setShowUpgrade] = useState(false)
+  const { history: topicHistory, addToHistory: addTopic } = useInputHistory('post-topic')
+  const { history: keywordsHistory, addToHistory: addKeywords } = useInputHistory('post-keywords')
 
   const selectedSns = SNS_OPTIONS.find((s) => s.value === snsType)
   const charCount = content.length
@@ -95,6 +98,8 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
         return
       }
 
+      addTopic(aiTopic)
+      if (aiKeywords.trim()) addKeywords(aiKeywords)
       setContent(data.content)
       toast.success(
         data.remaining !== null ? `生成しました（残り${data.remaining}回）` : '生成しました'
@@ -163,7 +168,11 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
                 placeholder="例：TypeScriptの型安全性について"
                 value={aiTopic}
                 onChange={(e) => setAiTopic(e.target.value)}
+                list="post-topic-history"
               />
+              <datalist id="post-topic-history">
+                {topicHistory.map((v) => <option key={v} value={v} />)}
+              </datalist>
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
@@ -201,7 +210,11 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
                 placeholder="例：効率化, 生産性, TypeScript"
                 value={aiKeywords}
                 onChange={(e) => setAiKeywords(e.target.value)}
+                list="post-keywords-history"
               />
+              <datalist id="post-keywords-history">
+                {keywordsHistory.map((v) => <option key={v} value={v} />)}
+              </datalist>
             </div>
             <Button
               onClick={handleAiGenerate}
