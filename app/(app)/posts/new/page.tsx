@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server'
 import { PostEditor } from '@/components/posts/post-editor'
 import { type SnsType, type Tone } from '@/types'
 
-export default async function NewPostPage() {
+export default async function NewPostPage({ searchParams }: { searchParams: Promise<{ topic?: string }> }) {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/login')
@@ -16,6 +16,7 @@ export default async function NewPostPage() {
 
   const defaultSnsType = (profile?.sns_type?.[0] as SnsType) ?? 'twitter'
   const defaultTone = (profile?.tone as Tone) ?? 'casual'
+  const { topic } = await searchParams
 
   return (
     <div className="p-8 space-y-6 max-w-5xl">
@@ -23,7 +24,7 @@ export default async function NewPostPage() {
         <h1 className="text-2xl font-bold text-gray-900">新規投稿</h1>
         <p className="text-gray-500 mt-1">AIで投稿文を生成または手動で入力</p>
       </div>
-      <PostEditor userId={user.id} defaultSnsType={defaultSnsType} defaultTone={defaultTone} />
+      <PostEditor userId={user.id} defaultSnsType={defaultSnsType} defaultTone={defaultTone} defaultTopic={topic ?? ''} />
     </div>
   )
 }

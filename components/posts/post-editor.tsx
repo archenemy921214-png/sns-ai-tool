@@ -38,9 +38,10 @@ interface PostEditorProps {
   userId: string
   defaultSnsType?: SnsType
   defaultTone?: Tone
+  defaultTopic?: string
 }
 
-export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTone = 'casual' }: PostEditorProps) {
+export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTone = 'casual', defaultTopic = '' }: PostEditorProps) {
   const router = useRouter()
   const [title, setTitle] = useState(post?.title ?? '')
   const [content, setContent] = useState(post?.content ?? '')
@@ -52,7 +53,7 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
 
   const [copied, setCopied] = useState(false)
 
-  const [aiTopic, setAiTopic] = useState('')
+  const [aiTopic, setAiTopic] = useState(defaultTopic)
   const [aiTone, setAiTone] = useState<Tone>(defaultTone)
   const [aiKeywords, setAiKeywords] = useState('')
   const [aiGenerating, setAiGenerating] = useState(false)
