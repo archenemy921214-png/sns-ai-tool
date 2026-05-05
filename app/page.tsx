@@ -18,7 +18,7 @@ export default function HomePage() {
           SNS投稿をAIでかんたん作成
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          SNS AI Toolは、Instagram・Threads・XなどのSNS投稿文をAIで作成できるWebサービスです。
+          Postlyは、Instagram・Threads・XなどのSNS投稿文をAIで作成できるWebサービスです。
           テーマを入力するだけで、投稿文のアイデアや本文を生成できます。
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">

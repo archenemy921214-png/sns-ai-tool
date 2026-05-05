@@ -6,7 +6,7 @@ export function PublicHeader() {
   return (
     <header className="sticky top-0 z-40 border-b bg-white/90 backdrop-blur">
       <div className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-        <Link href="/" className="text-lg font-bold text-blue-600">SNS AI Tool</Link>
+        <Link href="/" className="text-lg font-bold text-blue-600">Postly</Link>
         <nav className="flex items-center gap-2">
           <Link href="/pricing" className="hidden md:block text-sm text-gray-600 hover:text-gray-900 px-3 py-1">料金</Link>
           <Link href="/contact" className="hidden md:block text-sm text-gray-600 hover:text-gray-900 px-3 py-1">お問い合わせ</Link>

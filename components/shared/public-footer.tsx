@@ -5,7 +5,7 @@ export function PublicFooter() {
     <footer className="border-t bg-white mt-16">
       <div className="max-w-5xl mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <p className="text-sm font-bold text-gray-800">SNS AI Tool</p>
+          <p className="text-sm font-bold text-gray-800">Postly</p>
           <nav className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500">
             <Link href="/" className="hover:text-gray-800">トップ</Link>
             <Link href="/pricing" className="hover:text-gray-800">料金</Link>
@@ -15,7 +15,7 @@ export function PublicFooter() {
             <Link href="/contact" className="hover:text-gray-800">お問い合わせ</Link>
           </nav>
         </div>
-        <p className="text-xs text-gray-400 mt-6">© {new Date().getFullYear()} SNS AI Tool. All rights reserved.</p>
+        <p className="text-xs text-gray-400 mt-6">© {new Date().getFullYear()} Postly. All rights reserved.</p>
       </div>
     </footer>
   )

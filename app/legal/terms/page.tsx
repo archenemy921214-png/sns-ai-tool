@@ -14,7 +14,7 @@ export default function TermsPage() {
         <section className="space-y-3">
           <h2 className="text-lg font-bold">第1条（サービスの内容）</h2>
           <p className="text-sm text-gray-700 leading-relaxed">
-            SNS AI Tool（以下「本サービス」）は、AIを活用してSNS投稿文を生成するWebサービスです。ユーザーはテーマを入力することで、投稿文のアイデアや本文を生成することができます。
+            Postly（以下「本サービス」）は、AIを活用してSNS投稿文を生成するWebサービスです。ユーザーはテーマを入力することで、投稿文のアイデアや本文を生成することができます。
           </p>
         </section>
 

@@ -16,7 +16,7 @@ export default function ContactPage() {
         <div className="border rounded-xl p-6 space-y-4 bg-gray-50">
           <h2 className="font-bold">メールにてお問い合わせ</h2>
           <p className="text-sm text-gray-600">
-            下記メールアドレスにご連絡いただくか、件名に「SNS AI Tool お問い合わせ」とご記入ください。
+            下記メールアドレスにご連絡いただくか、件名に「Postly お問い合わせ」とご記入ください。
           </p>
           <a
             href="mailto:archenemy921214@gmail.com"
