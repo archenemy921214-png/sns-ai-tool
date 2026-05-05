@@ -81,7 +81,7 @@ export function Sidebar() {
         </Link>
         <Link
           href="/posts/new"
-          className="bg-violet-600 text-white text-xs font-medium px-3 py-1.5 rounded-full"
+          className="bg-violet-600 text-white text-sm font-semibold px-5 py-2 rounded-full"
         >
           ＋ 新規投稿
         </Link>
