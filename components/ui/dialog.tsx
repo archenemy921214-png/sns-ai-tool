@@ -102,7 +102,7 @@ function DialogFooter({
     >
       {children}
       {showCloseButton && (
-        <DialogPrimitive.Close render={<Button variant="outline" />}>
+        <DialogPrimitive.Close className={cn(buttonVariants({ variant: 'outline' }))}>
           Close
         </DialogPrimitive.Close>
       )}
