@@ -31,9 +31,9 @@ export function UpgradeModal({ open, onClose }: UpgradeModalProps) {
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-2 pt-2">
-          <p className="text-2xl font-bold text-violet-600">¥980<span className="text-sm font-normal text-gray-500">/月</span></p>
+          <p className="text-2xl font-bold text-emerald-600">¥980<span className="text-sm font-normal text-gray-500">/月</span></p>
           <Button
-            className="w-full bg-violet-600 hover:bg-violet-700"
+            className="w-full bg-emerald-600 hover:bg-emerald-700"
             onClick={handleUpgrade}
           >
             Proにアップグレード

@@ -81,7 +81,7 @@ export function TemplatesClient({ templates: initialTemplates, userId }: { templ
   return (
     <div className="space-y-4">
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger className="inline-flex items-center justify-center rounded-lg bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium px-2.5 h-8 transition-colors">
+        <DialogTrigger className="inline-flex items-center justify-center rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-2.5 h-8 transition-colors">
           + テンプレートを追加
         </DialogTrigger>
         <DialogContent>
@@ -115,7 +115,7 @@ export function TemplatesClient({ templates: initialTemplates, userId }: { templ
                 rows={6}
               />
             </div>
-            <Button className="w-full bg-violet-600 hover:bg-violet-700" onClick={handleSave} disabled={saving}>
+            <Button className="w-full bg-emerald-600 hover:bg-emerald-700" onClick={handleSave} disabled={saving}>
               {saving ? '保存中...' : '保存'}
             </Button>
           </div>

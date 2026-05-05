@@ -25,7 +25,7 @@ export default async function PostsPage() {
         </div>
         <Link
           href="/posts/new"
-          className={cn(buttonVariants(), 'bg-violet-600 hover:bg-violet-700')}
+          className={cn(buttonVariants(), 'bg-emerald-600 hover:bg-emerald-700')}
         >
           + 新規投稿
         </Link>

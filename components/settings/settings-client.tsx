@@ -131,8 +131,8 @@ export function SettingsClient({
                   onClick={() => toggleSns(sns.value)}
                   className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
                     selectedSns.includes(sns.value)
-                      ? 'bg-violet-600 text-white border-violet-600'
-                      : 'border-gray-300 text-gray-600 hover:border-violet-400'
+                      ? 'bg-emerald-600 text-white border-emerald-600'
+                      : 'border-gray-300 text-gray-600 hover:border-emerald-400'
                   }`}
                 >
                   {sns.label}
@@ -154,7 +154,7 @@ export function SettingsClient({
             </Select>
           </div>
           <Button
-            className="bg-violet-600 hover:bg-violet-700"
+            className="bg-emerald-600 hover:bg-emerald-700"
             onClick={handleSaveProfile}
             disabled={saving}
           >
@@ -182,7 +182,7 @@ export function SettingsClient({
           {limit !== Infinity && (
             <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
               <div
-                className="h-full bg-violet-500 rounded-full"
+                className="h-full bg-emerald-500 rounded-full"
                 style={{ width: `${Math.min((aiUsage / limit) * 100, 100)}%` }}
               />
             </div>
@@ -199,7 +199,7 @@ export function SettingsClient({
           {plan === 'free' ? (
             <a
               href="/pricing"
-              className={cn(buttonVariants(), 'bg-violet-600 hover:bg-violet-700')}
+              className={cn(buttonVariants(), 'bg-emerald-600 hover:bg-emerald-700')}
             >
               プランをアップグレード
             </a>

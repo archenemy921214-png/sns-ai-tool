@@ -80,7 +80,7 @@ export default async function DashboardPage() {
         </CardHeader>
         <CardContent className="space-y-3">
           {limit === Infinity ? (
-            <p className="text-sm font-medium text-violet-600">無制限</p>
+            <p className="text-sm font-medium text-emerald-600">無制限</p>
           ) : (
             <>
               <div className="flex justify-between text-sm">
@@ -92,7 +92,7 @@ export default async function DashboardPage() {
               <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                 <div
                   className={`h-full rounded-full transition-all ${
-                    usagePercent >= 100 ? 'bg-red-500' : usagePercent >= 66 ? 'bg-yellow-500' : 'bg-violet-500'
+                    usagePercent >= 100 ? 'bg-red-500' : usagePercent >= 66 ? 'bg-yellow-500' : 'bg-emerald-500'
                   }`}
                   style={{ width: `${Math.min(usagePercent, 100)}%` }}
                 />
@@ -100,7 +100,7 @@ export default async function DashboardPage() {
               {limit - aiUsage <= 0 ? (
                 <Link
                   href="/pricing"
-                  className={cn(buttonVariants({ size: 'sm' }), 'bg-violet-600 hover:bg-violet-700 mt-1')}
+                  className={cn(buttonVariants({ size: 'sm' }), 'bg-emerald-600 hover:bg-emerald-700 mt-1')}
                 >
                   Proにアップグレード
                 </Link>
@@ -118,7 +118,7 @@ export default async function DashboardPage() {
       </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="border-2 border-violet-100 hover:border-violet-300 transition-colors">
+        <Card className="border-2 border-emerald-100 hover:border-emerald-300 transition-colors">
           <CardContent className="p-6 flex flex-col items-start gap-3">
             <div className="text-3xl">✏️</div>
             <div>
@@ -127,7 +127,7 @@ export default async function DashboardPage() {
             </div>
             <Link
               href="/posts/new"
-              className={cn(buttonVariants(), 'bg-violet-600 hover:bg-violet-700')}
+              className={cn(buttonVariants(), 'bg-emerald-600 hover:bg-emerald-700')}
             >
               投稿を作成
             </Link>

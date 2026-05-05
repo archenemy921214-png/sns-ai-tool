@@ -93,14 +93,14 @@ export function CalendarClient({
               <div
                 key={day.toISOString()}
                 className={`min-h-[80px] border-b border-r p-1 cursor-pointer transition-colors ${
-                  isSelected ? 'bg-violet-50' : 'hover:bg-gray-50'
+                  isSelected ? 'bg-emerald-50' : 'hover:bg-gray-50'
                 }`}
                 onClick={() => setSelectedDate(isSelected ? null : day)}
               >
                 <div
                   className={`text-xs mb-1 w-6 h-6 flex items-center justify-center rounded-full ${
                     isToday
-                      ? 'bg-violet-600 text-white font-bold'
+                      ? 'bg-emerald-600 text-white font-bold'
                       : dayOfWeek === 0
                       ? 'text-red-500'
                       : dayOfWeek === 6
@@ -140,7 +140,7 @@ export function CalendarClient({
               </h3>
               <Link
                 href="/posts/new"
-                className={cn(buttonVariants({ size: 'sm' }), 'bg-violet-600 hover:bg-violet-700')}
+                className={cn(buttonVariants({ size: 'sm' }), 'bg-emerald-600 hover:bg-emerald-700')}
               >
                 + 投稿を作成
               </Link>

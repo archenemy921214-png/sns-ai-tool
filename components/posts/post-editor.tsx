@@ -219,7 +219,7 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
             <Button
               onClick={handleAiGenerate}
               disabled={aiGenerating || !aiTopic.trim()}
-              className="w-full bg-violet-600 hover:bg-violet-700"
+              className="w-full bg-emerald-600 hover:bg-emerald-700"
             >
               {aiGenerating ? '生成中...' : '✨ AI生成'}
             </Button>
@@ -271,7 +271,7 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
                       const url = urls[snsType]
                       if (url) window.open(url, '_blank')
                     }}
-                    className="p-1.5 rounded-md text-gray-400 hover:text-violet-600 hover:bg-gray-100 transition-colors"
+                    className="p-1.5 rounded-md text-gray-400 hover:text-emerald-600 hover:bg-gray-100 transition-colors"
                     title="SNSで開く"
                   >
                     <ExternalLink className="size-4" />
@@ -331,7 +331,7 @@ export function PostEditor({ post, userId, defaultSnsType = 'twitter', defaultTo
                 下書き保存
               </Button>
               <Button
-                className="flex-1 bg-violet-600 hover:bg-violet-700"
+                className="flex-1 bg-emerald-600 hover:bg-emerald-700"
                 onClick={() => handleSave()}
                 disabled={saving || !content.trim() || overLimit}
               >

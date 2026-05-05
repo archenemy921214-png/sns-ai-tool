@@ -97,7 +97,7 @@ export function PostsTable({ posts }: { posts: Post[] }) {
           <p>投稿がありません</p>
           <Link
             href="/posts/new"
-            className={cn(buttonVariants({ size: 'sm' }), 'mt-4 bg-violet-600 hover:bg-violet-700')}
+            className={cn(buttonVariants({ size: 'sm' }), 'mt-4 bg-emerald-600 hover:bg-emerald-700')}
           >
             投稿を作成する
           </Link>
@@ -107,7 +107,7 @@ export function PostsTable({ posts }: { posts: Post[] }) {
           {filtered.map((post) => (
             <div
               key={post.id}
-              className="flex items-start gap-4 bg-white rounded-lg border p-4 hover:border-violet-200 transition-colors"
+              className="flex items-start gap-4 bg-white rounded-lg border p-4 hover:border-emerald-200 transition-colors"
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
@@ -118,7 +118,7 @@ export function PostsTable({ posts }: { posts: Post[] }) {
                     <span className="text-xs text-gray-400 uppercase">{post.sns_type}</span>
                   )}
                   {post.ai_generated && (
-                    <span className="text-xs text-violet-500">✨ AI生成</span>
+                    <span className="text-xs text-emerald-500">✨ AI生成</span>
                   )}
                 </div>
                 {post.title && (

@@ -41,8 +41,8 @@ export function Sidebar() {
       {/* ===== PC: 左サイドバー ===== */}
       <aside className="hidden md:flex w-60 flex-shrink-0 border-r bg-white flex-col h-screen sticky top-0">
         <div className="p-4 border-b">
-          <Link href="/dashboard" className="text-xl font-bold text-violet-600">
-            PostAI
+          <Link href="/dashboard" className="text-xl font-bold text-emerald-600">
+            Postly
           </Link>
         </div>
 
@@ -54,7 +54,7 @@ export function Sidebar() {
               className={cn(
                 'flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors',
                 isActive(pathname, item.href)
-                  ? 'bg-violet-50 text-violet-700 font-medium'
+                  ? 'bg-emerald-50 text-emerald-700 font-medium'
                   : 'text-gray-600 hover:bg-gray-100'
               )}
             >
@@ -76,15 +76,15 @@ export function Sidebar() {
 
       {/* ===== スマホ: 上部ヘッダー ===== */}
       <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white border-b flex items-center px-4 h-12">
-        <Link href="/dashboard" className="text-lg font-bold text-violet-600">
-          PostAI
+        <Link href="/dashboard" className="text-lg font-bold text-emerald-600">
+          Postly
         </Link>
       </header>
 
       {/* ===== スマホ: FAB ===== */}
       <Link
         href="/posts/new"
-        className="md:hidden fixed bottom-20 right-4 z-50 size-14 rounded-full bg-violet-600 text-white shadow-lg flex items-center justify-center text-2xl active:scale-95 transition-transform"
+        className="md:hidden fixed bottom-20 right-4 z-50 size-14 rounded-full bg-emerald-600 text-white shadow-lg flex items-center justify-center text-2xl active:scale-95 transition-transform"
         aria-label="新規投稿"
       >
         ＋
@@ -101,7 +101,7 @@ export function Sidebar() {
                 href={item.href}
                 className={cn(
                   'flex-1 flex flex-col items-center py-2 text-xs transition-colors',
-                  active ? 'text-violet-600' : 'text-gray-400'
+                  active ? 'text-emerald-600' : 'text-gray-400'
                 )}
               >
                 <span className="text-xl mb-0.5">{item.icon}</span>

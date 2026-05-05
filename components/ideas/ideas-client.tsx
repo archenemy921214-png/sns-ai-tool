@@ -144,7 +144,7 @@ export function IdeasClient({
           <Button
             onClick={handleGenerate}
             disabled={generating || !theme.trim()}
-            className="bg-violet-600 hover:bg-violet-700"
+            className="bg-emerald-600 hover:bg-emerald-700"
           >
             {generating ? '生成中...' : '✨ ネタを生成する'}
           </Button>

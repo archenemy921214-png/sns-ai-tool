@@ -39,7 +39,7 @@ export default function SignupPage() {
   return (
     <Card className="shadow-xl">
       <CardHeader className="text-center">
-        <div className="text-3xl font-bold text-violet-600 mb-1">PostAI</div>
+        <div className="text-3xl font-bold text-emerald-600 mb-1">Postly</div>
         <CardTitle className="text-xl">新規登録</CardTitle>
         <CardDescription>無料でアカウントを作成</CardDescription>
       </CardHeader>
@@ -81,14 +81,14 @@ export default function SignupPage() {
               autoComplete="new-password"
             />
           </div>
-          <Button type="submit" className="w-full bg-violet-600 hover:bg-violet-700" disabled={loading}>
+          <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700" disabled={loading}>
             {loading ? '登録中...' : '無料で登録する'}
           </Button>
         </form>
       </CardContent>
       <CardFooter className="justify-center text-sm text-gray-500">
         すでにアカウントをお持ちの方は{' '}
-        <Link href="/login" className="text-violet-600 hover:underline ml-1">
+        <Link href="/login" className="text-emerald-600 hover:underline ml-1">
           ログイン
         </Link>
       </CardFooter>

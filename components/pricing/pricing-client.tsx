@@ -65,11 +65,11 @@ export function PricingClient() {
         <Card
           key={plan.name}
           className={`relative flex flex-col ${
-            plan.badge ? 'border-2 border-violet-500 shadow-lg' : ''
+            plan.badge ? 'border-2 border-emerald-500 shadow-lg' : ''
           }`}
         >
           {plan.badge && (
-            <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-violet-600">
+            <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-600">
               {plan.badge}
             </Badge>
           )}
@@ -92,7 +92,7 @@ export function PricingClient() {
             </ul>
             <Button
               className={`w-full mt-4 ${
-                plan.badge ? 'bg-violet-600 hover:bg-violet-700' : ''
+                plan.badge ? 'bg-emerald-600 hover:bg-emerald-700' : ''
               }`}
               variant={plan.badge ? 'default' : 'outline'}
               onClick={() => handleCheckout(plan.priceId, plan.name)}

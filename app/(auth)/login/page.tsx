@@ -28,7 +28,7 @@ export default function LoginPage() {
   return (
     <Card className="shadow-xl">
       <CardHeader className="text-center">
-        <div className="text-3xl font-bold text-violet-600 mb-1">PostAI</div>
+        <div className="text-3xl font-bold text-emerald-600 mb-1">Postly</div>
         <CardTitle className="text-xl">ログイン</CardTitle>
         <CardDescription>アカウントにサインインしてください</CardDescription>
       </CardHeader>
@@ -58,14 +58,14 @@ export default function LoginPage() {
               autoComplete="current-password"
             />
           </div>
-          <Button type="submit" className="w-full bg-violet-600 hover:bg-violet-700" disabled={loading}>
+          <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-700" disabled={loading}>
             {loading ? 'ログイン中...' : 'ログイン'}
           </Button>
         </form>
       </CardContent>
       <CardFooter className="justify-center text-sm text-gray-500">
         アカウントをお持ちでない方は{' '}
-        <Link href="/signup" className="text-violet-600 hover:underline ml-1">
+        <Link href="/signup" className="text-emerald-600 hover:underline ml-1">
           新規登録
         </Link>
       </CardFooter>

@@ -5,16 +5,16 @@ import { PricingClient } from '@/components/pricing/pricing-client'
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-indigo-100">
       <nav className="flex items-center justify-between px-8 py-4 border-b bg-white/70 backdrop-blur">
-        <Link href="/" className="text-xl font-bold text-violet-600">PostAI</Link>
+        <Link href="/" className="text-xl font-bold text-emerald-600">Postly</Link>
         <div className="flex gap-3">
           <Link href="/login" className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }))}>
             ログイン
           </Link>
           <Link
             href="/signup"
-            className={cn(buttonVariants({ size: 'sm' }), 'bg-violet-600 hover:bg-violet-700')}
+            className={cn(buttonVariants({ size: 'sm' }), 'bg-emerald-600 hover:bg-emerald-700')}
           >
             無料で始める
           </Link>

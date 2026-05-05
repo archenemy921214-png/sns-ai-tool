@@ -84,7 +84,7 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-violet-50 to-indigo-100 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-indigo-100 p-4">
       <Card className="w-full max-w-lg shadow-xl">
         <CardHeader>
           <div className="flex items-center gap-2 mb-2">
@@ -92,7 +92,7 @@ export default function OnboardingPage() {
               <div
                 key={s}
                 className={`h-2 flex-1 rounded-full transition-colors ${
-                  s <= step ? 'bg-violet-500' : 'bg-gray-200'
+                  s <= step ? 'bg-emerald-500' : 'bg-gray-200'
                 }`}
               />
             ))}
@@ -125,7 +125,7 @@ export default function OnboardingPage() {
                 />
               </div>
               <Button
-                className="w-full bg-violet-600 hover:bg-violet-700"
+                className="w-full bg-emerald-600 hover:bg-emerald-700"
                 onClick={() => setStep(2)}
                 disabled={!displayName.trim()}
               >
@@ -143,7 +143,7 @@ export default function OnboardingPage() {
                     onClick={() => toggleSns(sns.value)}
                     className={`p-3 rounded-lg border-2 text-left transition-colors ${
                       selectedSns.includes(sns.value)
-                        ? 'border-violet-500 bg-violet-50 text-violet-700'
+                        ? 'border-emerald-500 bg-emerald-50 text-emerald-700'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
@@ -156,7 +156,7 @@ export default function OnboardingPage() {
                   戻る
                 </Button>
                 <Button
-                  className="flex-1 bg-violet-600 hover:bg-violet-700"
+                  className="flex-1 bg-emerald-600 hover:bg-emerald-700"
                   onClick={() => setStep(3)}
                   disabled={selectedSns.length === 0}
                 >
@@ -175,7 +175,7 @@ export default function OnboardingPage() {
                     onClick={() => setSelectedTone(tone.value)}
                     className={`w-full p-3 rounded-lg border-2 text-left transition-colors ${
                       selectedTone === tone.value
-                        ? 'border-violet-500 bg-violet-50'
+                        ? 'border-emerald-500 bg-emerald-50'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
@@ -189,7 +189,7 @@ export default function OnboardingPage() {
                   戻る
                 </Button>
                 <Button
-                  className="flex-1 bg-violet-600 hover:bg-violet-700"
+                  className="flex-1 bg-emerald-600 hover:bg-emerald-700"
                   onClick={handleComplete}
                   disabled={loading}
                 >
