@@ -26,7 +26,7 @@ export default function HomePage() {
             href="/signup"
             className={cn(buttonVariants({ size: 'lg' }), 'bg-blue-600 hover:bg-blue-700 text-base px-8')}
           >
-            無料で始める
+            今すぐ無料で投稿を作成する
           </Link>
           <Link
             href="/pricing"
