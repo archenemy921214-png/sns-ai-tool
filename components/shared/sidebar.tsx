@@ -75,17 +75,20 @@ export function Sidebar() {
       </aside>
 
       {/* ===== スマホ: 上部ヘッダー ===== */}
-      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white border-b flex items-center justify-between px-4 h-12">
+      <header className="md:hidden fixed top-0 left-0 right-0 z-40 bg-white border-b flex items-center px-4 h-12">
         <Link href="/dashboard" className="text-lg font-bold text-violet-600">
           PostAI
         </Link>
-        <Link
-          href="/posts/new"
-          className="bg-violet-600 text-white text-sm font-semibold px-5 py-2 rounded-full"
-        >
-          ＋ 新規投稿
-        </Link>
       </header>
+
+      {/* ===== スマホ: FAB ===== */}
+      <Link
+        href="/posts/new"
+        className="md:hidden fixed bottom-20 right-4 z-50 size-14 rounded-full bg-violet-600 text-white shadow-lg flex items-center justify-center text-2xl active:scale-95 transition-transform"
+        aria-label="新規投稿"
+      >
+        ＋
+      </Link>
 
       {/* ===== スマホ: 下部タブナビ ===== */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t">
