@@ -140,7 +140,7 @@ export function SettingsClient({
             </div>
           </div>
           <div className="space-y-1.5">
-            <Label>デフォルトトーン</Label>
+            <Label>トーン</Label>
             <Select value={tone} onValueChange={(v) => setTone(v as Tone)}>
               <SelectTrigger className="w-full">
                 <SelectValue>
