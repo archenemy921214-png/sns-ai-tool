@@ -11,7 +11,6 @@ import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
 import { toast } from 'sonner'
@@ -143,8 +142,10 @@ export function SettingsClient({
           <div className="space-y-1.5">
             <Label>デフォルトトーン</Label>
             <Select value={tone} onValueChange={(v) => setTone(v as Tone)}>
-              <SelectTrigger className="w-48">
-                <SelectValue />
+              <SelectTrigger className="w-full">
+                <SelectValue>
+                  {(value: string | null) => TONE_OPTIONS.find((t) => t.value === value)?.label ?? ''}
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 {TONE_OPTIONS.map((t) => (
@@ -173,29 +174,30 @@ export function SettingsClient({
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-600">今月のAI生成使用回数</span>
-            <span className="font-medium">
-              {aiUsage} / {limit === Infinity ? '無制限' : limit} 回
-            </span>
+          <div className="space-y-1.5">
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-600">今月のAI生成使用回数</span>
+              <span className="font-medium">
+                {aiUsage} / {limit === Infinity ? '無制限' : limit} 回
+              </span>
+            </div>
+            {limit !== Infinity && (
+              <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-emerald-500 rounded-full"
+                  style={{ width: `${Math.min((aiUsage / limit) * 100, 100)}%` }}
+                />
+              </div>
+            )}
           </div>
-          {limit !== Infinity && (
-            <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-emerald-500 rounded-full"
-                style={{ width: `${Math.min((aiUsage / limit) * 100, 100)}%` }}
-              />
+          {plan !== 'free' && subscription?.current_period_end && (
+            <div className="space-y-1.5">
+              <Label>次回更新日</Label>
+              <p className="text-sm text-gray-600">
+                {new Date(subscription.current_period_end).toLocaleDateString('ja-JP')}
+              </p>
             </div>
           )}
-
-          <Separator />
-
-          {plan !== 'free' && subscription?.current_period_end && (
-            <p className="text-sm text-gray-500">
-              次回更新日: {new Date(subscription.current_period_end).toLocaleDateString('ja-JP')}
-            </p>
-          )}
-
           {plan === 'free' ? (
             <a
               href="/pricing"
@@ -204,10 +206,7 @@ export function SettingsClient({
               プランをアップグレード
             </a>
           ) : (
-            <Button
-              variant="outline"
-              onClick={handlePortal}
-              >
+            <Button variant="outline" onClick={handlePortal}>
               サブスクリプションを管理
             </Button>
           )}
