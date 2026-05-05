@@ -48,11 +48,11 @@ export async function generateIdeas(params: {
 テーマ: ${params.theme}
 SNS: ${params.snsType}
 
-以下のJSON配列形式で出力してください（説明文不要）:
-[
+以下のJSON形式で出力してください（説明文不要）:
+{"ideas": [
   {"title": "ネタのタイトル", "description": "ネタの概要（1〜2文）"},
   ...
-]`
+]}`
 
   const response = await openai.chat.completions.create({
     model: 'gpt-4o-mini',
