@@ -72,3 +72,56 @@ export const PLAN_LIMITS: Record<Plan, number> = {
 export const PLAN_PRICES = {
   pro: { label: 'Pro', price: 980, description: 'AI生成無制限/月' },
 }
+
+// SNS分析アシスタント
+export interface AnalysisScores {
+  hook: number
+  empathy: number
+  savePotential: number
+  leadNaturalness: number
+  ctaStrength: number
+  platformFit: number
+  monetization: number
+}
+
+export interface NextPostIdea {
+  title: string
+  purpose: string
+  target: string
+  angle: string
+  cta: string
+}
+
+export interface AnalysisResult {
+  overallScore: number
+  scores: AnalysisScores
+  goodPoints: string[]
+  weakPoints: string[]
+  reasonNotPerforming: string
+  monetizationIssues: string
+  improvedPost: string
+  nextPostIdeas: NextPostIdea[]
+  hashtags: string[]
+  ctaIdeas: string[]
+}
+
+export interface SnsAnalysis {
+  id: string
+  user_id: string
+  platform: string
+  genre: string
+  goal: string
+  target_audience: string
+  original_post: string
+  notes: string | null
+  image_urls: string[]
+  insight_image_urls: string[]
+  result: AnalysisResult
+  overall_score: number
+  created_at: string
+}
+
+export const ANALYSIS_LIMITS: Record<Plan, number> = {
+  free: 3,
+  pro: Infinity,
+}
