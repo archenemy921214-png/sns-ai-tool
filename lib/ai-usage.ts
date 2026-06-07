@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server'
-import { createAdminClient } from '@/lib/supabase/admin'
 import { PLAN_LIMITS, ANALYSIS_LIMITS, type Plan } from '@/types'
 
 export function getCurrentPeriod(): string {
@@ -52,13 +51,13 @@ export async function getAnalysisUsage(userId: string): Promise<number> {
   return data?.count ?? 0
 }
 
-export async function checkAndIncrementAnalysis(userId: string): Promise<{
+export async function checkAndIncrementAnalysis(userId: string, userEmail = ''): Promise<{
   allowed: boolean
   current: number
   limit: number
   plan: Plan
 }> {
-  if (await isOwner(userId)) {
+  if (process.env.OWNER_EMAIL && userEmail === process.env.OWNER_EMAIL) {
     return { allowed: true, current: 0, limit: Infinity, plan: 'free' }
   }
 
@@ -82,21 +81,13 @@ export async function checkAndIncrementAnalysis(userId: string): Promise<{
   return { allowed: true, current: current + 1, limit, plan }
 }
 
-export async function isOwner(userId: string): Promise<boolean> {
-  const ownerEmail = process.env.OWNER_EMAIL
-  if (!ownerEmail) return false
-  const admin = createAdminClient()
-  const { data } = await admin.auth.admin.getUserById(userId)
-  return data?.user?.email === ownerEmail
-}
-
-export async function checkAndIncrementUsage(userId: string): Promise<{
+export async function checkAndIncrementUsage(userId: string, userEmail = ''): Promise<{
   allowed: boolean
   current: number
   limit: number
   plan: Plan
 }> {
-  if (await isOwner(userId)) {
+  if (process.env.OWNER_EMAIL && userEmail === process.env.OWNER_EMAIL) {
     return { allowed: true, current: 0, limit: Infinity, plan: 'free' }
   }
 

@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const { allowed, current, limit, plan } = await checkAndIncrementUsage(user.id)
+  const { allowed, current, limit, plan } = await checkAndIncrementUsage(user.id, user.email ?? '')
 
   if (!allowed) {
     return NextResponse.json(
